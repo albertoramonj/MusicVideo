@@ -11,7 +11,7 @@ import Foundation
 class APIManager {
         //() equals to Void
 //    func loadData(urlString:String, completion: (result:String) -> ()) {
-    func loadData(urlString:String, completion: (result:String) -> Void) {
+    func loadData(urlString:String, completion: [Videos] -> Void) {
         
         //Disable chache
         let config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
@@ -26,10 +26,7 @@ class APIManager {
             (data, response, error) -> Void in
             
             if error != nil {
-                dispatch_async(dispatch_get_main_queue()) {
-                    completion(result: (error!.localizedDescription))
-                }
-                
+                print(error!.localizedDescription)
             } else {
                 
                 //Added for JSONSerialization
@@ -42,22 +39,31 @@ class APIManager {
                      Converts the NSData into a JSON object and cast it to a Dictionary */
                 
                     if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
-                    as? JSONDictionary {
+                    as? JSONDictionary,
+                        feed = json["feed"] as? JSONDictionary,
+                        entries = feed["entry"] as? JSONArray {
                         
-                        print (json)
+                        // Be careful not to put a lot of logic here in the APIManager
+                        var videos = [Videos]()
+                        for entry in entries {
+                            let entry = Videos(data: entry as! JSONDictionary) // Custom initializer
+                            videos.append(entry)
+                        }
+                        
+                        let i = videos.count
+                        print("iTunesApiManager - total count --> \(i)")
+                        print(" ")
                         
                         let priority = DISPATCH_QUEUE_PRIORITY_HIGH
                         dispatch_async(dispatch_get_global_queue(priority, 0)) {
                             dispatch_async(dispatch_get_main_queue()) {
-                                completion(result: "JSONSerialization Successful")
+                                completion(videos)
                             }
                         }
                     }
                         
                 } catch {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        completion(result: "error in JSONSerialization")
-                    }
+                    print("error in JSONSerialization")
                 }
             
             }

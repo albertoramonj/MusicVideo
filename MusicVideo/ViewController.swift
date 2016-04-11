@@ -63,7 +63,7 @@ class ViewController: UIViewController {
     func reachabilityStatusChanged() {
         switch reachabilityStatus {
         case NOACCESS: view.backgroundColor = UIColor.redColor()
-            displayLabel.text = "No internet"
+        displayLabel.text = "No internet"
         case WIFI: view.backgroundColor = UIColor.greenColor()
         displayLabel.text = "Reachable with WIFI"
         case NOACCESS: view.backgroundColor = UIColor.yellowColor()

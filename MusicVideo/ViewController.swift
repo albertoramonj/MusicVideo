@@ -30,6 +30,8 @@ class ViewController: UIViewController {
     //API callback
     func didLoadData(videos: [Videos]) {
         
+        print(reachabilityStatus)
+        
         self.videos = videos
         
         for item in videos {

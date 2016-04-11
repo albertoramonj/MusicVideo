@@ -12,8 +12,19 @@ class ViewController: UIViewController {
 
     var videos = [Videos]()
     
+    @IBOutlet weak var displayLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        #if swift(>=2.2)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.reachabilityStatusChanged), name: "ReachStatusChanged", object: nil)
+        #else
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityStatusChanged", name: "ReachStatusChanged", object: nil)
+        #endif
+        
+        reachabilityStatusChanged()
+        
         
         //Call API
         let api = APIManager()
@@ -26,7 +37,7 @@ class ViewController: UIViewController {
 //        }
         
     }
-    
+
     //API callback
     func didLoadData(videos: [Videos]) {
         
@@ -47,6 +58,23 @@ class ViewController: UIViewController {
 //            print("\(i) name = \(video.vName)")
 //        }
         
+    }
+    
+    func reachabilityStatusChanged() {
+        switch reachabilityStatus {
+        case NOACCESS: view.backgroundColor = UIColor.redColor()
+            displayLabel.text = "No internet"
+        case WIFI: view.backgroundColor = UIColor.greenColor()
+        displayLabel.text = "Reachable with WIFI"
+        case NOACCESS: view.backgroundColor = UIColor.yellowColor()
+        displayLabel.text = "Reachable with Cellular"
+        default:
+            return
+        }
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "ReachStatusChanged", object: nil)
     }
 }
 

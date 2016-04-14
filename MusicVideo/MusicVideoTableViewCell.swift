@@ -23,6 +23,11 @@ class MusicVideoTableViewCell: UITableViewCell {
     @IBOutlet weak var musicTitle: UILabel!
     
     func updateCell() {
+        
+        //Let the user change the font size via accessibility
+        musicTitle.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+        rank.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+        
         musicTitle.text = video?.vName // Not necessary to unwrap because if it's nil nothing happens, shows blank
         rank.text = "\(video!.vRank)" // Necessary to unwrap because we are creating a String, if not, it'll shows the string "Optional("xxx")"
         //musicImage.image = UIImage(named: "imageNotAvailable")

@@ -17,8 +17,10 @@ class MusicVideoTVC: UITableViewController {
         
         #if swift(>=2.2)
             NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.reachabilityStatusChanged), name: "ReachStatusChanged", object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(preferredFontChanged), name: UIContentSizeCategoryDidChangeNotification, object: nil)
         #else
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityStatusChanged", name: "ReachStatusChanged", object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "preferredFontChanged", name: UIContentSizeCategoryDidChangeNotification, object: nil)
         #endif
         
         reachabilityStatusChanged()
@@ -88,6 +90,10 @@ class MusicVideoTVC: UITableViewController {
         }
     }
     
+    func preferredFontChanged() {
+        print("The preferred font has changed")
+    }
+    
     func runAPI() {
         //Call API
         let api = APIManager()
@@ -97,6 +103,7 @@ class MusicVideoTVC: UITableViewController {
     // Is called just as the object is about to be deallocated
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "ReachStatusChanged", object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIContentSizeCategoryDidChangeNotification, object: nil)
     }
 
     // MARK: - Table view data source

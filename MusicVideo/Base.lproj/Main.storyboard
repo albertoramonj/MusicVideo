@@ -29,11 +29,11 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="rank" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrV-eg-2EM">
-                                            <rect key="frame" x="188" y="17" width="45" height="35"/>
+                                            <rect key="frame" x="188" y="13" width="58" height="39"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="45" id="oDg-qC-b4d"/>
+                                                <constraint firstAttribute="width" constant="58" id="oDg-qC-b4d"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -50,7 +50,7 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="zEW-BS-DBH" secondAttribute="bottom" constant="7.5" id="8Tt-1M-bDd"/>
                                         <constraint firstItem="zEW-BS-DBH" firstAttribute="top" secondItem="5Nb-wZ-8KI" secondAttribute="topMargin" constant="-1" id="Tqj-kc-bmN"/>
                                         <constraint firstItem="hrV-eg-2EM" firstAttribute="leading" secondItem="zEW-BS-DBH" secondAttribute="trailing" constant="8" symbolic="YES" id="a88-bm-on9"/>
-                                        <constraint firstItem="hrV-eg-2EM" firstAttribute="top" secondItem="5Nb-wZ-8KI" secondAttribute="topMargin" constant="9" id="egd-kA-hUq"/>
+                                        <constraint firstItem="hrV-eg-2EM" firstAttribute="top" secondItem="5Nb-wZ-8KI" secondAttribute="topMargin" constant="5" id="egd-kA-hUq"/>
                                         <constraint firstItem="zEW-BS-DBH" firstAttribute="bottom" secondItem="Shn-XV-kh7" secondAttribute="bottom" id="f3E-fq-mwA"/>
                                         <constraint firstItem="Shn-XV-kh7" firstAttribute="top" secondItem="5Nb-wZ-8KI" secondAttribute="topMargin" constant="35" id="izP-4K-OiK"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="hrV-eg-2EM" secondAttribute="bottom" constant="78.5" id="kvi-AL-wJk"/>

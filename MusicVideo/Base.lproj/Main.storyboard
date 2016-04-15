@@ -120,7 +120,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="rights" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iR5-q8-1Gt">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="rights" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iR5-q8-1Gt">
                                 <rect key="frame" x="1" y="458" width="599" height="98"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="98" id="SXH-Oh-GS7"/>
@@ -139,15 +139,56 @@
                             <constraint firstItem="LNt-3b-Z0W" firstAttribute="baseline" secondItem="osH-z7-WeZ" secondAttribute="baseline" id="DL2-GU-5Qo"/>
                             <constraint firstAttribute="trailing" secondItem="wM8-8A-EwS" secondAttribute="trailing" id="FRB-KK-klJ"/>
                             <constraint firstItem="wM8-8A-EwS" firstAttribute="top" secondItem="u5V-hh-Upn" secondAttribute="bottom" constant="68" id="Q5U-UV-dpY"/>
+                            <constraint firstItem="wM8-8A-EwS" firstAttribute="centerX" secondItem="B6W-hv-MKz" secondAttribute="centerX" id="R2o-T4-RIM"/>
                             <constraint firstItem="JPa-N2-bIS" firstAttribute="centerX" secondItem="wM8-8A-EwS" secondAttribute="centerX" id="SWm-QH-inG"/>
                             <constraint firstItem="JPa-N2-bIS" firstAttribute="centerX" secondItem="B6W-hv-MKz" secondAttribute="centerX" id="V8q-2g-xGw"/>
+                            <constraint firstItem="wM8-8A-EwS" firstAttribute="top" secondItem="u5V-hh-Upn" secondAttribute="bottom" id="d6g-mq-mOZ"/>
                             <constraint firstItem="JPa-N2-bIS" firstAttribute="leading" secondItem="B6W-hv-MKz" secondAttribute="leadingMargin" constant="-13" id="dzH-XW-elV"/>
+                            <constraint firstAttribute="trailing" secondItem="wM8-8A-EwS" secondAttribute="trailing" id="fUM-K5-oZZ"/>
                             <constraint firstItem="LNt-3b-Z0W" firstAttribute="top" secondItem="wM8-8A-EwS" secondAttribute="bottom" constant="1" id="gY2-MC-cnx"/>
                             <constraint firstItem="iR5-q8-1Gt" firstAttribute="bottom" secondItem="Vwf-la-Swj" secondAttribute="top" id="gkR-3n-WM4"/>
                             <constraint firstItem="wM8-8A-EwS" firstAttribute="trailing" secondItem="iR5-q8-1Gt" secondAttribute="trailing" id="hsm-LP-dg3"/>
                             <constraint firstItem="JPa-N2-bIS" firstAttribute="top" secondItem="u5V-hh-Upn" secondAttribute="bottom" id="nWy-AT-nff"/>
+                            <constraint firstItem="Vwf-la-Swj" firstAttribute="top" secondItem="wM8-8A-EwS" secondAttribute="bottom" constant="8" symbolic="YES" id="rh0-C0-oLw"/>
                             <constraint firstItem="osH-z7-WeZ" firstAttribute="trailing" secondItem="B6W-hv-MKz" secondAttribute="trailingMargin" id="zWI-XZ-yT9"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="R2o-T4-RIM"/>
+                                <exclude reference="d6g-mq-mOZ"/>
+                                <exclude reference="fUM-K5-oZZ"/>
+                                <exclude reference="rh0-C0-oLw"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="subviews">
+                                <exclude reference="JPa-N2-bIS"/>
+                                <exclude reference="LNt-3b-Z0W"/>
+                                <exclude reference="osH-z7-WeZ"/>
+                                <exclude reference="iR5-q8-1Gt"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="SWm-QH-inG"/>
+                                <exclude reference="V8q-2g-xGw"/>
+                                <exclude reference="dzH-XW-elV"/>
+                                <exclude reference="nWy-AT-nff"/>
+                                <exclude reference="6S9-ih-Vfs"/>
+                                <exclude reference="8dp-Ao-KtC"/>
+                                <exclude reference="DL2-GU-5Qo"/>
+                                <exclude reference="gY2-MC-cnx"/>
+                                <exclude reference="DFW-zB-WFE"/>
+                                <exclude reference="gkR-3n-WM4"/>
+                                <exclude reference="zWI-XZ-yT9"/>
+                                <exclude reference="2bi-KD-9Cs"/>
+                                <exclude reference="FRB-KK-klJ"/>
+                                <exclude reference="Q5U-UV-dpY"/>
+                                <include reference="R2o-T4-RIM"/>
+                                <include reference="d6g-mq-mOZ"/>
+                                <include reference="fUM-K5-oZZ"/>
+                                <exclude reference="hsm-LP-dg3"/>
+                                <include reference="rh0-C0-oLw"/>
+                            </mask>
+                        </variation>
                     </view>
                     <toolbarItems>
                         <barButtonItem systemItem="play" id="HDz-5X-gPI">
@@ -168,7 +209,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p6v-wL-7gE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2457" y="568"/>
+            <point key="canvasLocation" x="2457" y="567"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ijj-D6-UUB">

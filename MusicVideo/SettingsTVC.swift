@@ -30,6 +30,12 @@ class SettingsTVC: UITableViewController {
         
     }
     
+    @IBAction func valueChanged(sender: AnyObject) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(Int(sliderCount.value), forKey: "APICount")
+        APICount.text = "\(Int(sliderCount.value))"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -44,6 +50,12 @@ class SettingsTVC: UITableViewController {
         
         title = "Settings"
         touchID.on = NSUserDefaults.standardUserDefaults().boolForKey("SecSetting")
+        
+        //Always check if it's not nil
+        if let theValue = NSUserDefaults.standardUserDefaults().objectForKey("APICount") as? Int {
+            APICount.text = "\(theValue)"
+            sliderCount.value = Float(theValue)
+        }
     }
     
     func preferredFontChanged() {

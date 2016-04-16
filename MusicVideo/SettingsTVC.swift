@@ -19,17 +19,31 @@ class SettingsTVC: UITableViewController {
     @IBOutlet weak var APICount: UILabel!
     @IBOutlet weak var sliderCount: UISlider!
     
+    @IBAction func touchIDSec(sender: AnyObject) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if touchID.on {
+            defaults.setBool(touchID.on, forKey: "SecSetting")
+        } else {
+            defaults.setBool(false, forKey: "SecSetting")
+        }
+        //No need to sync
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Disables vertical bounce
-        tableView.alwaysBounceVertical = false
-        
         #if swift(>=2.2)
             NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(preferredFontChanged), name: UIContentSizeCategoryDidChangeNotification, object: nil)
         #else
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "preferredFontChanged", name: UIContentSizeCategoryDidChangeNotification, object: nil)
         #endif
+        
+        // Disables vertical bounce
+        tableView.alwaysBounceVertical = false
+        
+        title = "Settings"
+        touchID.on = NSUserDefaults.standardUserDefaults().boolForKey("SecSetting")
     }
     
     func preferredFontChanged() {

@@ -165,11 +165,11 @@
 		61F9A2411CBBA2F0003E4C13 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				61A51F891CC0F97F00F632F3 /* MusicVideoDetailVC.swift */,
+				6140DDD51CBE68C70076DAFD /* MusicVideoTableViewCell.swift */,
 				6140DDD31CBE53E90076DAFD /* MusicVideoTVC.swift */,
 				61A51FAC1CC1C93D00F632F3 /* SettingsTVC.swift */,
-				6140DDD51CBE68C70076DAFD /* MusicVideoTableViewCell.swift */,
 				61F9A2141CBB9F77003E4C13 /* ViewController.swift */,
-				61A51F891CC0F97F00F632F3 /* MusicVideoDetailVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";

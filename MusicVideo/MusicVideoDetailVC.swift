@@ -12,6 +12,8 @@ class MusicVideoDetailVC: UIViewController {
 
     var video:Videos!
     
+//    var sec:Bool = false
+    
     @IBOutlet weak var vName: UILabel!
     @IBOutlet weak var videoImage: UIImageView!
     @IBOutlet weak var vGenre: UILabel!
@@ -26,6 +28,11 @@ class MusicVideoDetailVC: UIViewController {
         #else
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "preferredFontChanged", name: UIContentSizeCategoryDidChangeNotification, object: nil)
         #endif
+        
+//        sec = NSUserDefaults.standardUserDefaults().boolForKey("SecSetting")
+//        if sec {
+//            
+//        }
         
         title = video.vArtist
         vName.text = video.vName

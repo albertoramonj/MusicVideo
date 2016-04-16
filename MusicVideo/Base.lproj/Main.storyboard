@@ -219,10 +219,10 @@
             </objects>
             <point key="canvasLocation" x="2457" y="567"/>
         </scene>
-        <!--Table View Controller-->
+        <!--SettingsTVC-->
         <scene sceneID="DM4-do-fRN">
             <objects>
-                <tableViewController id="MiE-d5-pPj" sceneMemberID="viewController">
+                <tableViewController id="MiE-d5-pPj" customClass="SettingsTVC" customModule="MusicVideo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="84" sectionHeaderHeight="28" sectionFooterHeight="28" id="VFm-El-8d6">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -384,6 +384,15 @@
                             <outlet property="delegate" destination="MiE-d5-pPj" id="Jsa-Qe-dkb"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="APICount" destination="5tQ-Uj-BTj" id="a4I-Hb-Pdg"/>
+                        <outlet property="aboutDisplay" destination="2Wg-RS-I3w" id="tXQ-fP-V7B"/>
+                        <outlet property="bestImageDisplay" destination="k9G-Yu-Nt9" id="Mcd-Rq-RKA"/>
+                        <outlet property="feedbackDisplay" destination="dOF-MG-NZh" id="gVI-nC-H2E"/>
+                        <outlet property="securityDisplay" destination="qaS-E3-ce5" id="g3u-zA-PJJ"/>
+                        <outlet property="sliderCount" destination="dZQ-ER-CEw" id="fdq-O3-c68"/>
+                        <outlet property="touchID" destination="d0C-0g-mQq" id="FLP-Lv-COE"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nsb-Wh-GvY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

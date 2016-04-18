@@ -14,7 +14,7 @@ extension MusicVideoTVC: SettingsTVCDelegate {
     }
 }
 
-class MusicVideoTVC: UITableViewController {
+class MusicVideoTVC: UITableViewController, UISearchResultsUpdating {
     
     var videos = [Videos]()
     
@@ -27,7 +27,12 @@ class MusicVideoTVC: UITableViewController {
     
     @IBAction func refresh(sender: UIRefreshControl) {
         refreshControl?.endRefreshing()
-        runAPI()
+        
+        if (resultSearchController.active) {
+            refreshControl?.attributedTitle = NSAttributedString(string: "No refresh allowed in search")
+        } else {
+            runAPI()
+        }
     }
     
     override func viewDidLoad() {
@@ -68,9 +73,8 @@ class MusicVideoTVC: UITableViewController {
         
         title = "The iTunes Top \(limit) Music Videos"
         
-//        resultSearchController.searchResultsUpdater = self
-        
-        //prevent the search bar to show if the user navigate to other view
+        resultSearchController.searchResultsUpdater = self
+        //prevents the search bar to show if the user navigate to other view
         definesPresentationContext = true
         resultSearchController.dimsBackgroundDuringPresentation = false
         resultSearchController.searchBar.placeholder = "Search for Artist"
@@ -149,6 +153,12 @@ class MusicVideoTVC: UITableViewController {
         api.loadData("https://itunes.apple.com/us/rss/topmusicvideos/limit=\(limit)/json", completion: didLoadData)
     }
     
+    func filterSearch(searchText: String) {
+        filteredSearch = videos.filter({$0._vArtist.lowercaseString.containsString(searchText) || $0._vName.lowercaseString.containsString(searchText) || $0.vRank == Int(searchText)})
+        
+        tableView.reloadData()
+    }
+    
     // Is called just as the object is about to be deallocated
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "ReachStatusChanged", object: nil)
@@ -222,6 +232,10 @@ class MusicVideoTVC: UITableViewController {
     }
     */
 
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        searchController.searchBar.text!.lowercaseString
+        filterSearch(searchController.searchBar.text!.lowercaseString)
+    }
     
     // MARK: - Navigation
 

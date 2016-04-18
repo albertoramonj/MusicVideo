@@ -8,13 +8,7 @@
 
 import UIKit
 
-extension MusicVideoTVC: SettingsTVCDelegate {
-    func sliderCountChanged(count: Int, sender: SettingsTVC) {
-        runAPI()
-    }
-}
-
-class MusicVideoTVC: UITableViewController, UISearchResultsUpdating {
+class MusicVideoTVC: UITableViewController {
     
     var videos = [Videos]()
     
@@ -77,7 +71,7 @@ class MusicVideoTVC: UITableViewController, UISearchResultsUpdating {
         //prevents the search bar to show if the user navigate to other view
         definesPresentationContext = true
         resultSearchController.dimsBackgroundDuringPresentation = false
-        resultSearchController.searchBar.placeholder = "Search for Artist"
+        resultSearchController.searchBar.placeholder = "Search for Artist, name, Rank"
         resultSearchController.searchBar.searchBarStyle = .Prominent
         
         //add the search bar to your tableview
@@ -154,7 +148,12 @@ class MusicVideoTVC: UITableViewController, UISearchResultsUpdating {
     }
     
     func filterSearch(searchText: String) {
-        filteredSearch = videos.filter({$0._vArtist.lowercaseString.containsString(searchText) || $0._vName.lowercaseString.containsString(searchText) || $0.vRank == Int(searchText)})
+        filteredSearch = videos.filter {$0._vArtist.lowercaseString.containsString(searchText) || $0._vName.lowercaseString.containsString(searchText) || $0.vRank == Int(searchText)}
+        
+        //Another way
+//        filteredSearch = videos.filter { videos in
+//            return videos.vArtist.lowercaseString.containsString(searchText.lowercaseString) || videos.vName.lowercaseString.containsString(searchText.lowercaseString) || "\(videos.vRank)".lowercaseString.containsString(searchText.lowercaseString)
+//        }
         
         tableView.reloadData()
     }
@@ -232,11 +231,6 @@ class MusicVideoTVC: UITableViewController, UISearchResultsUpdating {
     }
     */
 
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        searchController.searchBar.text!.lowercaseString
-        filterSearch(searchController.searchBar.text!.lowercaseString)
-    }
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -263,3 +257,5 @@ class MusicVideoTVC: UITableViewController, UISearchResultsUpdating {
     
 
 }
+
+

@@ -19,6 +19,9 @@ class MusicVideoTVC: UITableViewController {
     
     var limit = 10
     
+    //True if both wifi and settings switch are enabled. False otherwise
+    var bestImageQuality: Bool = false
+    
     @IBAction func refresh(sender: UIRefreshControl) {
         refreshControl?.endRefreshing()
         
@@ -33,7 +36,7 @@ class MusicVideoTVC: UITableViewController {
         super.viewDidLoad()
         
         #if swift(>=2.2)
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.reachabilityStatusChanged), name: "ReachStatusChanged", object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MusicVideoTVC.reachabilityStatusChanged), name: "ReachStatusChanged", object: nil)
             NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(preferredFontChanged), name: UIContentSizeCategoryDidChangeNotification, object: nil)
         #else
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityStatusChanged", name: "ReachStatusChanged", object: nil)
@@ -115,11 +118,20 @@ class MusicVideoTVC: UITableViewController {
             
         default:
             //view.backgroundColor = UIColor.greenColor()
-            if videos.count > 0 {
+
+            //if imageQuality it's the same than settings and we're on wifi
+            if videos.count > 0 && reachabilityStatus == WIFI && bestImageQuality == NSUserDefaults.standardUserDefaults().boolForKey("bestImageSetting") {
                 print("do not refresh API")
             } else {
                 runAPI()
             }
+        }
+    }
+    
+    func setImageQuality() {
+        bestImageQuality = false
+        if (NSUserDefaults.standardUserDefaults().boolForKey("bestImageSetting") && reachabilityStatus == WIFI) {
+            bestImageQuality = true
         }
     }
     
@@ -140,11 +152,11 @@ class MusicVideoTVC: UITableViewController {
     
     func runAPI() {
         getAPICount()
+        setImageQuality()
         
         //Call API
         let api = APIManager()
-        
-        api.loadData("https://itunes.apple.com/us/rss/topmusicvideos/limit=\(limit)/json", completion: didLoadData)
+        api.loadData("https://itunes.apple.com/us/rss/topmusicvideos/limit=\(limit)/json", withHighQuality:bestImageQuality, completion: didLoadData)
     }
     
     func filterSearch(searchText: String) {

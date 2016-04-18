@@ -11,7 +11,8 @@ import MessageUI
 import LocalAuthentication
 
 protocol SettingsTVCDelegate: class {
-    func sliderCountChanged(count: Int,sender: SettingsTVC)
+    func sliderCountChanged(count: Int, sender: UISlider)
+    func bestImageSwitchChanged(sender: UISwitch)
 }
 
 class SettingsTVC: UITableViewController, MFMailComposeViewControllerDelegate {
@@ -23,7 +24,7 @@ class SettingsTVC: UITableViewController, MFMailComposeViewControllerDelegate {
     @IBOutlet weak var securityDisplay: UILabel!
     @IBOutlet weak var touchID: UISwitch!
     @IBOutlet weak var bestImageDisplay: UILabel!
-    
+    @IBOutlet weak var bestImage: UISwitch!
     @IBOutlet weak var numberOfVideosDisplay: UILabel!
     @IBOutlet weak var dragTheSliderDisplay: UILabel!
     @IBOutlet weak var APICount: UILabel!
@@ -37,7 +38,12 @@ class SettingsTVC: UITableViewController, MFMailComposeViewControllerDelegate {
             defaults.setBool(false, forKey: "SecSetting")
         }
         //No need to sync
-        
+    }
+    
+    @IBAction func bestImageChanged(sender: UISwitch) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setBool(sender.on, forKey: "bestImageSetting")
+        delegate?.bestImageSwitchChanged(sender)
     }
     
     @IBAction func valueChanged(sender: AnyObject) {
@@ -47,7 +53,7 @@ class SettingsTVC: UITableViewController, MFMailComposeViewControllerDelegate {
     }
     
     @IBAction func valueChangesEnded(sender: UISlider) {
-        delegate?.sliderCountChanged(Int(sliderCount.value), sender: self)
+        delegate?.sliderCountChanged(Int(sliderCount.value), sender: sender)
     }
     
     override func viewDidLoad() {
@@ -65,6 +71,8 @@ class SettingsTVC: UITableViewController, MFMailComposeViewControllerDelegate {
         title = "Settings"
         touchID.on = NSUserDefaults.standardUserDefaults().boolForKey("SecSetting")
         touchID.enabled = isThePhoneTouchIdCapable()
+        bestImage.on = NSUserDefaults.standardUserDefaults().boolForKey("bestImageSetting")
+        
         
         //Always check if it's not nil
         if let theValue = NSUserDefaults.standardUserDefaults().objectForKey("APICount") as? Int {
@@ -133,6 +141,7 @@ class SettingsTVC: UITableViewController, MFMailComposeViewControllerDelegate {
         if context.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error:&touchIDError) {
             return true
         } else {
+            securityDisplay.text = "Security not available"
             return false
         }
     }

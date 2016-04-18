@@ -302,9 +302,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Security" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qaS-E3-ce5">
-                                                    <rect key="frame" x="8" y="31" width="101" height="21"/>
+                                                    <rect key="frame" x="8" y="32" width="477" height="20"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="101" id="WgH-Ae-f6S"/>
+                                                        <constraint firstAttribute="width" constant="477" id="WgH-Ae-f6S"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -319,7 +319,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="d0C-0g-mQq" secondAttribute="trailing" constant="8" id="1ok-Fi-iCS"/>
-                                                <constraint firstItem="qaS-E3-ce5" firstAttribute="top" secondItem="9kS-nb-Jgl" secondAttribute="topMargin" constant="23" id="55S-cA-NLK"/>
+                                                <constraint firstItem="qaS-E3-ce5" firstAttribute="top" secondItem="9kS-nb-Jgl" secondAttribute="topMargin" constant="24" id="55S-cA-NLK"/>
                                                 <constraint firstItem="qaS-E3-ce5" firstAttribute="centerY" secondItem="d0C-0g-mQq" secondAttribute="centerY" id="Ed5-ge-BS3"/>
                                                 <constraint firstItem="qaS-E3-ce5" firstAttribute="leading" secondItem="9kS-nb-Jgl" secondAttribute="leadingMargin" id="mFb-QH-Ah6"/>
                                                 <constraint firstItem="qaS-E3-ce5" firstAttribute="centerY" secondItem="9kS-nb-Jgl" secondAttribute="centerY" id="ven-cR-HvK"/>
@@ -335,6 +335,9 @@
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="H3x-kA-a6p">
                                                     <rect key="frame" x="535" y="31" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="bestImageChanged:" destination="MiE-d5-pPj" eventType="valueChanged" id="NJk-cf-979"/>
+                                                    </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Best Image Quality" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k9G-Yu-Nt9">
                                                     <rect key="frame" x="8" y="26" width="255" height="41"/>
@@ -428,6 +431,7 @@
                     <connections>
                         <outlet property="APICount" destination="5tQ-Uj-BTj" id="a4I-Hb-Pdg"/>
                         <outlet property="aboutDisplay" destination="2Wg-RS-I3w" id="tXQ-fP-V7B"/>
+                        <outlet property="bestImage" destination="H3x-kA-a6p" id="Rie-3f-vDo"/>
                         <outlet property="bestImageDisplay" destination="k9G-Yu-Nt9" id="Mcd-Rq-RKA"/>
                         <outlet property="dragTheSliderDisplay" destination="VNf-R7-WAG" id="DB6-Uq-WAv"/>
                         <outlet property="feedbackDisplay" destination="dOF-MG-NZh" id="gVI-nC-H2E"/>

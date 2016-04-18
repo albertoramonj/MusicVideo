@@ -9,7 +9,11 @@
 import UIKit
 
 extension MusicVideoTVC: SettingsTVCDelegate {
-    func sliderCountChanged(count: Int, sender: SettingsTVC) {
+    func sliderCountChanged(count: Int, sender: UISlider) {
+        runAPI()
+    }
+    
+    func bestImageSwitchChanged(sender: UISwitch) {
         runAPI()
     }
 }

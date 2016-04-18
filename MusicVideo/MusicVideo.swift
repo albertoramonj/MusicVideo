@@ -70,7 +70,7 @@ class Videos {
         return _vReleaseDte
     }
     
-    init(data: JSONDictionary) {
+    init(data: JSONDictionary, quality:Bool) {
         
         //If we do not initialize all properties we will get error message
         //Return from initializer without initializing all stored properties
@@ -106,7 +106,11 @@ class Videos {
         if let img = data["im:image"] as? JSONArray,
             image = img[2] as? JSONDictionary,
             immage = image["label"] as? String {
-            self._vImageUrl = immage.stringByReplacingOccurrencesOfString("100x100", withString: "600x600")
+            if quality {
+                self._vImageUrl = immage.stringByReplacingOccurrencesOfString("100x100", withString: "600x600")
+            } else {
+                self._vImageUrl = immage
+            }
         } else {
             _vImageUrl = ""
         }

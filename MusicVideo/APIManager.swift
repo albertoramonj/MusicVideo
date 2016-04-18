@@ -11,7 +11,7 @@ import Foundation
 class APIManager {
         //() equals to Void
 //    func loadData(urlString:String, completion: (result:String) -> ()) {
-    func loadData(urlString:String, completion: [Videos] -> Void) {
+    func loadData(urlString:String, withHighQuality:Bool, completion: [Videos] -> Void) {
         
         //Disable chache
         let config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
@@ -46,7 +46,7 @@ class APIManager {
                         // Be careful not to put a lot of logic here in the APIManager
                         var videos = [Videos]()
                         for (index, entry) in entries.enumerate() {
-                            let entry = Videos(data: entry as! JSONDictionary) // Custom initializer
+                            let entry = Videos(data: entry as! JSONDictionary, quality:withHighQuality) // Custom initializer
                             entry.vRank = index + 1
                             videos.append(entry)
                         }

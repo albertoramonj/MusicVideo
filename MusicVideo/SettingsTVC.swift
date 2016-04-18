@@ -8,6 +8,7 @@
 
 import UIKit
 import MessageUI
+import LocalAuthentication
 
 protocol SettingsTVCDelegate: class {
     func sliderCountChanged(count: Int,sender: SettingsTVC)
@@ -63,6 +64,7 @@ class SettingsTVC: UITableViewController, MFMailComposeViewControllerDelegate {
         
         title = "Settings"
         touchID.on = NSUserDefaults.standardUserDefaults().boolForKey("SecSetting")
+        touchID.enabled = isThePhoneTouchIdCapable()
         
         //Always check if it's not nil
         if let theValue = NSUserDefaults.standardUserDefaults().objectForKey("APICount") as? Int {
@@ -120,6 +122,19 @@ class SettingsTVC: UITableViewController, MFMailComposeViewControllerDelegate {
         }
         
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func isThePhoneTouchIdCapable() -> Bool {
+        // Create the Local Authentication Context
+        let context = LAContext()
+        var touchIDError : NSError?
+        
+        // Check if we can access local device authentication
+        if context.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error:&touchIDError) {
+            return true
+        } else {
+            return false
+        }
     }
     
     func preferredFontChanged() {

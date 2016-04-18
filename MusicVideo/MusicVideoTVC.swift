@@ -18,6 +18,11 @@ class MusicVideoTVC: UITableViewController {
     
     var videos = [Videos]()
     
+    var filteredSearch = [Videos]()
+    
+    // nil because we want to show the results on the same view
+    let resultSearchController = UISearchController(searchResultsController: nil)
+    
     var limit = 10
     
     @IBAction func refresh(sender: UIRefreshControl) {
@@ -62,6 +67,19 @@ class MusicVideoTVC: UITableViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.redColor()]
         
         title = "The iTunes Top \(limit) Music Videos"
+        
+//        resultSearchController.searchResultsUpdater = self
+        
+        //prevent the search bar to show if the user navigate to other view
+        definesPresentationContext = true
+        resultSearchController.dimsBackgroundDuringPresentation = false
+        resultSearchController.searchBar.placeholder = "Search for Artist"
+        resultSearchController.searchBar.searchBarStyle = .Prominent
+        
+        //add the search bar to your tableview
+        tableView.tableHeaderView = resultSearchController.searchBar
+        
+        
         
         tableView.reloadData()
         
@@ -145,7 +163,9 @@ class MusicVideoTVC: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        if resultSearchController.active {
+            return filteredSearch.count
+        }
         return videos.count
     }
 
@@ -158,7 +178,11 @@ class MusicVideoTVC: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(storyboard.cellReuseIdentifier, forIndexPath: indexPath) as! MusicVideoTableViewCell
         
-        cell.video = videos[indexPath.row]
+        if resultSearchController.active {
+            cell.video = filteredSearch[indexPath.row]
+        } else {
+            cell.video = videos[indexPath.row]
+        }
         
         return cell
     }
@@ -205,10 +229,15 @@ class MusicVideoTVC: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == storyboard.segueToDetailIdentifier {
             if let indexpath = tableView.indexPathForSelectedRow {
-                let video = videos[indexpath.row]
-                let dvc = segue.destinationViewController as! MusicVideoDetailVC
-                dvc.video = video 
+                let video: Videos
+                if resultSearchController.active {
+                    video = filteredSearch[indexpath.row]
+                } else {
+                    video = videos[indexpath.row]
+                }
                 
+                let dvc = segue.destinationViewController as! MusicVideoDetailVC
+                dvc.video = video
             }
         }
         

@@ -76,11 +76,17 @@
                         <barButtonItem title="Settings" id="zK5-Io-mot">
                             <color key="tintColor" red="0.97254901959999995" green="0.25882352939999997" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="MiE-d5-pPj" kind="show" id="Tcu-wA-Iz0"/>
+                                <segue destination="MiE-d5-pPj" kind="show" identifier="settings" id="Tcu-wA-Iz0"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="SQg-Os-Vif"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="VWb-TZ-jO3">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="refresh:" destination="Mmu-4j-21C" eventType="valueChanged" id="0ZQ-ta-LcB"/>
+                        </connections>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2SK-1n-6bR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -350,21 +356,27 @@
                                         <rect key="frame" x="0.0" y="400" width="600" height="84"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UMO-zs-Bao" id="UZ5-0I-eBV">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="83.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="84"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5tQ-Uj-BTj">
-                                                    <rect key="frame" x="8" y="8" width="584" height="75"/>
+                                                    <rect key="frame" x="560" y="26" width="16" height="17"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Music Videos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tjq-v2-2RU">
+                                                    <rect key="frame" x="8" y="31" width="159" height="17"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="5tQ-Uj-BTj" firstAttribute="trailing" secondItem="UZ5-0I-eBV" secondAttribute="trailingMargin" id="2uX-hy-2jC"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="5tQ-Uj-BTj" secondAttribute="bottom" constant="-7.5" id="B0x-03-Q17"/>
-                                                <constraint firstItem="5tQ-Uj-BTj" firstAttribute="top" secondItem="UZ5-0I-eBV" secondAttribute="topMargin" id="RJ2-Eb-tGG"/>
-                                                <constraint firstItem="5tQ-Uj-BTj" firstAttribute="leading" secondItem="UZ5-0I-eBV" secondAttribute="leadingMargin" id="ky9-VY-htZ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="5tQ-Uj-BTj" secondAttribute="trailing" constant="16" id="HtG-pF-zEa"/>
+                                                <constraint firstItem="Tjq-v2-2RU" firstAttribute="top" secondItem="UZ5-0I-eBV" secondAttribute="topMargin" constant="23" id="RL0-Bb-qHo"/>
+                                                <constraint firstItem="Tjq-v2-2RU" firstAttribute="leading" secondItem="UZ5-0I-eBV" secondAttribute="leadingMargin" id="c29-a7-B80"/>
+                                                <constraint firstItem="5tQ-Uj-BTj" firstAttribute="top" secondItem="UZ5-0I-eBV" secondAttribute="topMargin" constant="18" id="qhy-x6-0u4"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -372,20 +384,32 @@
                                         <rect key="frame" x="0.0" y="484" width="600" height="84"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZvY-MV-dNg" id="TfT-8L-vU3">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="83.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="84"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="10" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="dZQ-ER-CEw">
-                                                    <rect key="frame" x="46" y="27" width="509" height="31"/>
+                                                    <rect key="frame" x="46" y="37" width="509" height="31"/>
                                                     <connections>
                                                         <action selector="valueChanged:" destination="MiE-d5-pPj" eventType="valueChanged" id="xxS-k4-FDC"/>
                                                     </connections>
                                                 </slider>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drag the slider below" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNf-R7-WAG">
+                                                    <rect key="frame" x="169" y="8" width="263" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="263" id="5vJ-nw-V77"/>
+                                                        <constraint firstAttribute="height" constant="21" id="rf8-ni-1x3"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="dZQ-ER-CEw" firstAttribute="centerY" secondItem="TfT-8L-vU3" secondAttribute="centerY" id="Rxj-CU-XBt"/>
-                                                <constraint firstItem="dZQ-ER-CEw" firstAttribute="centerX" secondItem="TfT-8L-vU3" secondAttribute="centerX" id="miB-sE-a07"/>
-                                                <constraint firstItem="dZQ-ER-CEw" firstAttribute="leading" secondItem="TfT-8L-vU3" secondAttribute="leadingMargin" constant="40" id="zyw-ki-ZOB"/>
+                                                <constraint firstItem="VNf-R7-WAG" firstAttribute="centerX" secondItem="TfT-8L-vU3" secondAttribute="centerX" id="5rh-nR-svG"/>
+                                                <constraint firstItem="dZQ-ER-CEw" firstAttribute="top" secondItem="VNf-R7-WAG" secondAttribute="bottom" constant="8" symbolic="YES" id="JV8-qP-aRW"/>
+                                                <constraint firstItem="dZQ-ER-CEw" firstAttribute="leading" secondItem="TfT-8L-vU3" secondAttribute="leadingMargin" constant="40" id="RUM-gF-h7r"/>
+                                                <constraint firstItem="VNf-R7-WAG" firstAttribute="top" secondItem="TfT-8L-vU3" secondAttribute="topMargin" id="Z1V-xH-okh"/>
+                                                <constraint firstItem="VNf-R7-WAG" firstAttribute="centerX" secondItem="dZQ-ER-CEw" secondAttribute="centerX" id="sTM-VX-8Sz"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -401,7 +425,9 @@
                         <outlet property="APICount" destination="5tQ-Uj-BTj" id="a4I-Hb-Pdg"/>
                         <outlet property="aboutDisplay" destination="2Wg-RS-I3w" id="tXQ-fP-V7B"/>
                         <outlet property="bestImageDisplay" destination="k9G-Yu-Nt9" id="Mcd-Rq-RKA"/>
+                        <outlet property="dragDisplay" destination="VNf-R7-WAG" id="ROD-C7-nte"/>
                         <outlet property="feedbackDisplay" destination="dOF-MG-NZh" id="gVI-nC-H2E"/>
+                        <outlet property="numberDisplay" destination="Tjq-v2-2RU" id="j2u-w6-tzl"/>
                         <outlet property="securityDisplay" destination="qaS-E3-ce5" id="g3u-zA-PJJ"/>
                         <outlet property="sliderCount" destination="dZQ-ER-CEw" id="fdq-O3-c68"/>
                         <outlet property="touchID" destination="d0C-0g-mQq" id="FLP-Lv-COE"/>

@@ -8,9 +8,22 @@
 
 import UIKit
 
+extension MusicVideoTVC: SettingsTVCDelegate {
+    func sliderCountChanged(count: Int, sender: SettingsTVC) {
+        runAPI()
+    }
+}
+
 class MusicVideoTVC: UITableViewController {
     
     var videos = [Videos]()
+    
+    var limit = 10
+    
+    @IBAction func refresh(sender: UIRefreshControl) {
+        refreshControl?.endRefreshing()
+        runAPI()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +58,10 @@ class MusicVideoTVC: UITableViewController {
         //            let video = videos[i]
         //            print("\(i) name = \(video.vName)")
         //        }
+        
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.redColor()]
+        
+        title = "The iTunes Top \(limit) Music Videos"
         
         tableView.reloadData()
         
@@ -94,10 +111,24 @@ class MusicVideoTVC: UITableViewController {
         print("The preferred font has changed")
     }
     
+    func getAPICount() {
+        if let theValue = NSUserDefaults.standardUserDefaults().objectForKey("APICount") as? Int {
+            limit = theValue
+        }
+        
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "E, dd MMM yyyy HH:mm:ss"
+        let refreshDate = formatter.stringFromDate(NSDate())
+        refreshControl?.attributedTitle = NSAttributedString(string: "\(refreshDate)")
+    }
+    
     func runAPI() {
+        getAPICount()
+        
         //Call API
         let api = APIManager()
-        api.loadData("https://itunes.apple.com/us/rss/topmusicvideos/limit=200/json", completion: didLoadData)
+        
+        api.loadData("https://itunes.apple.com/us/rss/topmusicvideos/limit=\(limit)/json", completion: didLoadData)
     }
     
     // Is called just as the object is about to be deallocated
@@ -120,7 +151,8 @@ class MusicVideoTVC: UITableViewController {
 
     private struct storyboard {
         static let cellReuseIdentifier = "cell"
-        static let segueIdentifier = "musicDetail"
+        static let segueToDetailIdentifier = "musicDetail"
+        static let segueToSettingsIdentifier = "settings"
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -171,13 +203,18 @@ class MusicVideoTVC: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == storyboard.segueIdentifier {
+        if segue.identifier == storyboard.segueToDetailIdentifier {
             if let indexpath = tableView.indexPathForSelectedRow {
                 let video = videos[indexpath.row]
                 let dvc = segue.destinationViewController as! MusicVideoDetailVC
                 dvc.video = video 
                 
             }
+        }
+        
+        if segue.identifier == storyboard.segueToSettingsIdentifier {
+            let settingsTVC = segue.destinationViewController as! SettingsTVC
+            settingsTVC.delegate = self
         }
     }
     

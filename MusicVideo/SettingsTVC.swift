@@ -8,14 +8,22 @@
 
 import UIKit
 
+protocol SettingsTVCDelegate: class {
+    func sliderCountChanged(count: Int,sender: SettingsTVC)
+}
+
 class SettingsTVC: UITableViewController {
 
+    weak var delegate:SettingsTVCDelegate?
+    
     @IBOutlet weak var aboutDisplay: UILabel!
     @IBOutlet weak var feedbackDisplay: UILabel!
     @IBOutlet weak var securityDisplay: UILabel!
     @IBOutlet weak var touchID: UISwitch!
     @IBOutlet weak var bestImageDisplay: UILabel!
     
+    @IBOutlet weak var numberDisplay: UILabel!
+    @IBOutlet weak var dragDisplay: UILabel!
     @IBOutlet weak var APICount: UILabel!
     @IBOutlet weak var sliderCount: UISlider!
     
@@ -34,6 +42,7 @@ class SettingsTVC: UITableViewController {
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject(Int(sliderCount.value), forKey: "APICount")
         APICount.text = "\(Int(sliderCount.value))"
+        delegate?.sliderCountChanged(Int(sliderCount.value), sender: self)
     }
     
     override func viewDidLoad() {
@@ -55,6 +64,9 @@ class SettingsTVC: UITableViewController {
         if let theValue = NSUserDefaults.standardUserDefaults().objectForKey("APICount") as? Int {
             APICount.text = "\(theValue)"
             sliderCount.value = Float(theValue)
+        } else {
+            sliderCount.value = 10.0
+            APICount.text = "\(sliderCount.value)"
         }
     }
     
@@ -64,6 +76,8 @@ class SettingsTVC: UITableViewController {
         securityDisplay.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
         bestImageDisplay.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
         APICount.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+        numberDisplay.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+        dragDisplay.font = UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote)
     }
     
     deinit {

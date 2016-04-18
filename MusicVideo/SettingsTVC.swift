@@ -22,8 +22,8 @@ class SettingsTVC: UITableViewController {
     @IBOutlet weak var touchID: UISwitch!
     @IBOutlet weak var bestImageDisplay: UILabel!
     
-    @IBOutlet weak var numberDisplay: UILabel!
-    @IBOutlet weak var dragDisplay: UILabel!
+    @IBOutlet weak var numberOfVideosDisplay: UILabel!
+    @IBOutlet weak var dragTheSliderDisplay: UILabel!
     @IBOutlet weak var APICount: UILabel!
     @IBOutlet weak var sliderCount: UISlider!
     
@@ -42,8 +42,14 @@ class SettingsTVC: UITableViewController {
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject(Int(sliderCount.value), forKey: "APICount")
         APICount.text = "\(Int(sliderCount.value))"
+    }
+    
+    @IBAction func valueChangesEnded(sender: UISlider) {
         delegate?.sliderCountChanged(Int(sliderCount.value), sender: self)
     }
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,8 +82,8 @@ class SettingsTVC: UITableViewController {
         securityDisplay.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
         bestImageDisplay.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
         APICount.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
-        numberDisplay.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
-        dragDisplay.font = UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote)
+        numberOfVideosDisplay.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+        dragTheSliderDisplay.font = UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote)
     }
     
     deinit {

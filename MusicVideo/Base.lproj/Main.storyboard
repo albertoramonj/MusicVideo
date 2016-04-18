@@ -215,6 +215,9 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="lxP-n0-mN6"/>
                         <barButtonItem systemItem="action" id="bin-Ff-LEi">
                             <color key="tintColor" red="0.97254901959999995" green="0.25882352939999997" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="socialMedia:" destination="e54-ud-LdJ" id="893-TW-uBX"/>
+                            </connections>
                         </barButtonItem>
                     </toolbarItems>
                     <connections>
@@ -391,6 +394,7 @@
                                                     <rect key="frame" x="46" y="37" width="509" height="31"/>
                                                     <connections>
                                                         <action selector="valueChanged:" destination="MiE-d5-pPj" eventType="valueChanged" id="xxS-k4-FDC"/>
+                                                        <action selector="valueChangesEnded:" destination="MiE-d5-pPj" eventType="touchUpInside" id="0RT-Bh-UGc"/>
                                                     </connections>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drag the slider below" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNf-R7-WAG">
@@ -425,9 +429,9 @@
                         <outlet property="APICount" destination="5tQ-Uj-BTj" id="a4I-Hb-Pdg"/>
                         <outlet property="aboutDisplay" destination="2Wg-RS-I3w" id="tXQ-fP-V7B"/>
                         <outlet property="bestImageDisplay" destination="k9G-Yu-Nt9" id="Mcd-Rq-RKA"/>
-                        <outlet property="dragDisplay" destination="VNf-R7-WAG" id="ROD-C7-nte"/>
+                        <outlet property="dragTheSliderDisplay" destination="VNf-R7-WAG" id="DB6-Uq-WAv"/>
                         <outlet property="feedbackDisplay" destination="dOF-MG-NZh" id="gVI-nC-H2E"/>
-                        <outlet property="numberDisplay" destination="Tjq-v2-2RU" id="j2u-w6-tzl"/>
+                        <outlet property="numberOfVideosDisplay" destination="Tjq-v2-2RU" id="Jv5-Pd-njg"/>
                         <outlet property="securityDisplay" destination="qaS-E3-ce5" id="g3u-zA-PJJ"/>
                         <outlet property="sliderCount" destination="dZQ-ER-CEw" id="fdq-O3-c68"/>
                         <outlet property="touchID" destination="d0C-0g-mQq" id="FLP-Lv-COE"/>

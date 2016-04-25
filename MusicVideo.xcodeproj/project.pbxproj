@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		612622AB1CCE28F700C37D35 /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612622AA1CCE28F700C37D35 /* RatingControl.swift */; };
 		6140DDD41CBE53E90076DAFD /* MusicVideoTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6140DDD31CBE53E90076DAFD /* MusicVideoTVC.swift */; };
 		6140DDD61CBE68C70076DAFD /* MusicVideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6140DDD51CBE68C70076DAFD /* MusicVideoTableViewCell.swift */; };
 		6140DDE01CBFF1CE0076DAFD /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6140DDDF1CBFF1CE0076DAFD /* Reachability.m */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		612622AA1CCE28F700C37D35 /* RatingControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
 		6140DD861CBC026A0076DAFD /* MusicVideo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MusicVideo-Bridging-Header.h"; sourceTree = "<group>"; };
 		6140DDD31CBE53E90076DAFD /* MusicVideoTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicVideoTVC.swift; sourceTree = "<group>"; };
 		6140DDD51CBE68C70076DAFD /* MusicVideoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicVideoTableViewCell.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 		61F9A2421CBBA312003E4C13 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				612622AA1CCE28F700C37D35 /* RatingControl.swift */,
 				61F9A2161CBB9F77003E4C13 /* Main.storyboard */,
 				61F9A21B1CBB9F77003E4C13 /* LaunchScreen.storyboard */,
 			);
@@ -333,6 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				61F9A2451CBBA70A003E4C13 /* APIManager.swift in Sources */,
+				612622AB1CCE28F700C37D35 /* RatingControl.swift in Sources */,
 				61A51F8A1CC0F97F00F632F3 /* MusicVideoDetailVC.swift in Sources */,
 				61F9A24A1CBBE3F4003E4C13 /* MusicVideo.swift in Sources */,
 				6140DDD61CBE68C70076DAFD /* MusicVideoTableViewCell.swift in Sources */,

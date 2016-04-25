@@ -24,6 +24,7 @@ class MusicVideoDetailVC: UIViewController {
     @IBOutlet weak var vGenre: UILabel!
     @IBOutlet weak var vPrice: UILabel!
     @IBOutlet weak var vRights: UILabel!
+    @IBOutlet weak var vRatingControl: RatingControl!
     
     @IBAction func playVideo(sender: UIBarButtonItem) {
         let url = NSURL(string: video.vVideoUrl)!

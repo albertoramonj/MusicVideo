@@ -21,6 +21,27 @@ class MusicVideoTests: XCTestCase {
         super.tearDown()
     }
     
+    // MARK: MusicVideo Tests
+    // Test to confirm that the MusicVideo initializer returns when no data is provided
+    func testMusicVideoInitialization() {
+        let potentialItem = Videos(data: [:], quality: true)
+        XCTAssertNotNil(potentialItem)
+        
+        let nameAsNumber = Videos(data: ["im":["name":8]], quality: true)
+        XCTAssertNotNil(nameAsNumber)
+    }
+    
+    func testApi() {
+        let api = APIManager()
+        api.loadData("", withHighQuality: true) { videos in
+            XCTAssertNotNil(videos)
+        }
+        
+        api.loadData("http://google.es", withHighQuality: true) { videos in
+            XCTAssertNotNil(videos)
+        }
+    }
+    
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.

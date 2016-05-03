@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EfD-ky-SyN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="DXd-qZ-NO2">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -247,14 +247,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Qip-RR-6II">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Qip-RR-6II">
                                 <rect key="frame" x="20" y="37" width="560" height="540"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="7Je-gm-3p9">
-                                        <rect key="frame" x="0.0" y="0.0" width="560" height="90"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="40" distribution="fillEqually" alignment="firstBaseline" translatesAutoresizingMaskIntoConstraints="NO" id="7Je-gm-3p9">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="40"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="249" verticalCompressionResistancePriority="760" placeholderIntrinsicWidth="150" placeholderIntrinsicHeight="40" text="vName" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o4A-JB-hIG">
-                                                <rect key="frame" x="0.0" y="0.0" width="560" height="90"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="249" verticalCompressionResistancePriority="760" misplaced="YES" placeholderIntrinsicWidth="150" placeholderIntrinsicHeight="40" text="vName" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o4A-JB-hIG">
+                                                <rect key="frame" x="0.0" y="0.0" width="560" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="6nJ-rD-fJn"/>
                                                 </constraints>
@@ -267,8 +267,8 @@
                                                     </mask>
                                                 </variation>
                                             </label>
-                                            <view hidden="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="300" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="dUW-Bh-OQu" customClass="RatingControl" customModule="MusicVideo" customModuleProvider="target">
-                                                <rect key="frame" x="560" y="0.0" width="0.0" height="90"/>
+                                            <view hidden="YES" contentMode="scaleToFill" misplaced="YES" placeholderIntrinsicWidth="300" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="dUW-Bh-OQu" customClass="RatingControl" customModule="MusicVideo" customModuleProvider="target">
+                                                <rect key="frame" x="560" y="15" width="0.0" height="50"/>
                                                 <color key="backgroundColor" red="0.98429292440414429" green="0.67767333984375" blue="0.17112258076667786" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="nq6-TY-Uz9"/>
@@ -281,29 +281,29 @@
                                             </view>
                                         </subviews>
                                     </stackView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalCompressionResistancePriority="740" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="200" image="imageNotAvailable" translatesAutoresizingMaskIntoConstraints="NO" id="i0b-li-ftb">
-                                        <rect key="frame" x="0.0" y="90" width="560" height="270"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalCompressionResistancePriority="740" misplaced="YES" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="200" image="imageNotAvailable" translatesAutoresizingMaskIntoConstraints="NO" id="i0b-li-ftb">
+                                        <rect key="frame" x="0.0" y="60" width="560" height="270"/>
                                         <color key="backgroundColor" red="1" green="0.63794511556625366" blue="0.44255834817886353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="20" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="zUl-3H-sCj">
-                                        <rect key="frame" x="0.0" y="360" width="560" height="90"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" misplaced="YES" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="20" distribution="fillEqually" alignment="lastBaseline" translatesAutoresizingMaskIntoConstraints="NO" id="zUl-3H-sCj">
+                                        <rect key="frame" x="0.0" y="350" width="560" height="40"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" placeholderIntrinsicWidth="300" placeholderIntrinsicHeight="20" text="Genre: POP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJD-9U-wMJ">
-                                                <rect key="frame" x="0.0" y="0.0" width="280" height="90"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="280" height="20"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" placeholderIntrinsicWidth="300" placeholderIntrinsicHeight="20" text="$1.99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yPE-kd-ITJ">
-                                                <rect key="frame" x="280" y="0.0" width="280" height="90"/>
+                                                <rect key="frame" x="280" y="0.0" width="280" height="20"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="80" text="rights" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DfZ-il-SdE">
-                                        <rect key="frame" x="0.0" y="450" width="560" height="90"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" misplaced="YES" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="80" text="rights" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DfZ-il-SdE">
+                                        <rect key="frame" x="0.0" y="410" width="560" height="130"/>
                                         <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="Jih-F8-4fB"/>
@@ -329,6 +329,7 @@
                                     <constraint firstItem="i0b-li-ftb" firstAttribute="leading" secondItem="Qip-RR-6II" secondAttribute="leading" id="bM5-Oc-8x3"/>
                                     <constraint firstItem="DfZ-il-SdE" firstAttribute="leading" secondItem="Qip-RR-6II" secondAttribute="leading" id="dPm-nf-CtH"/>
                                     <constraint firstItem="i0b-li-ftb" firstAttribute="top" secondItem="7Je-gm-3p9" secondAttribute="bottom" id="fKO-cX-tH8"/>
+                                    <constraint firstItem="zUl-3H-sCj" firstAttribute="height" secondItem="7Je-gm-3p9" secondAttribute="height" id="fLO-xm-f9m"/>
                                     <constraint firstAttribute="trailing" secondItem="i0b-li-ftb" secondAttribute="trailing" id="gNz-CA-2FU"/>
                                     <constraint firstItem="zUl-3H-sCj" firstAttribute="top" secondItem="i0b-li-ftb" secondAttribute="bottom" id="jB3-pJ-5Gd"/>
                                     <constraint firstItem="zUl-3H-sCj" firstAttribute="leading" secondItem="Qip-RR-6II" secondAttribute="leading" id="qVl-rl-EyR"/>
@@ -341,7 +342,14 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="fKO-cX-tH8"/>
+                                        <exclude reference="wDY-VI-u6Y"/>
                                         <exclude reference="4Sb-3n-77T"/>
+                                        <exclude reference="jB3-pJ-5Gd"/>
+                                        <exclude reference="9Ab-uE-kHj"/>
+                                        <exclude reference="Zra-e3-AJB"/>
+                                        <exclude reference="smu-wa-GeM"/>
+                                        <exclude reference="zlk-TK-se9"/>
                                     </mask>
                                 </variation>
                             </stackView>

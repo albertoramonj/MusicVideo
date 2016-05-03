@@ -8,164 +8,127 @@
 
 import Foundation
 
-class Videos {
-    
-    var vRank = 0
+class Video {
     
     // Data Encapsulation
     
-    private(set) var _vName:String // non optional (?) because we're going to initilize it later
-    private(set) var _vRights:String
-    private(set) var _vPrice:String
-    private(set) var _vImageUrl:String
-    private(set) var _vArtist:String
-    private(set) var _vVideoUrl:String
-    private(set) var _vImid:String
-    private(set) var _vGenre:String
-    private(set) var _vLinkToiTunes:String
-    private(set) var _vReleaseDte:String
+    // set will do the getters automatically
+    private(set) var vRank:Int
+    private(set) var vName:String // non optional (?) because we're going to initilize it later
+    private(set) var vRights:String
+    private(set) var vPrice:String
+    private(set) var vImageUrl:String
+    private(set) var vArtist:String
+    private(set) var vVideoUrl:String
+    private(set) var vImid:String
+    private(set) var vGenre:String
+    private(set) var vLinkToiTunes:String
+    private(set) var vReleaseDte:String
     
     // This variable gets created from the UI
     var vImageData:NSData?
     
-    //Make a getter
-    
-    var vName: String {
-        return _vName
+
+    // Better this way: single responsibility principle
+    init(vRank:Int, vName:String, vRights:String, vPrice:String,
+         vImageUrl:String, vArtist:String, vVideoUrl:String, vImid:String,
+         vGenre:String, vLinkToiTunes:String, vReleaseDte:String) {
+        
+        self.vRank = vRank
+        self.vName = vName
+        self.vRights = vRights
+        self.vPrice = vPrice
+        self.vImageUrl = vImageUrl
+        self.vArtist = vArtist
+        self.vVideoUrl = vVideoUrl
+        self.vImid = vImid
+        self.vGenre = vGenre
+        self.vLinkToiTunes = vLinkToiTunes
+        self.vReleaseDte = vReleaseDte
+        
     }
     
-    var vRights: String {
-        return _vRights
-    }
+//    init(data: JSONDictionary, quality:Bool) {
+//        self.vName = ""
+//        self.vRights = ""
+//        self.vPrice = ""
+//        self.vImageUrl = ""
+//        self.vArtist = ""
+//        self.vVideoUrl = ""
+//        self.vImid = ""
+//        self.vGenre = ""
+//        self.vLinkToiTunes = ""
+//        self.vReleaseDte = ""
+//        
+//        //Video name
+//        if let imName = data["im:name"] as? JSONDictionary,
+//            label = imName["label"] as? String {
+//                vName = label
+//        }
+//        
+//        //Video Studio Name
+//        if let rightsDict = data["rights"] as? JSONDictionary,
+//            label = rightsDict["label"] as? String {
+//                vRights = label
+//        }
+//        
+//        //Video price
+//        if let imPrice = data["im:price"] as? JSONDictionary,
+//            label = imPrice["label"] as? String {
+//                vPrice = label
+//        }
+//        
+//        //Video image
+//        if let imImage = data["im:image"] as? JSONArray,
+//            image = imImage[2] as? JSONDictionary,
+//            label = image["label"] as? String {
+//            if quality {
+//                vImageUrl = label.stringByReplacingOccurrencesOfString("100x100", withString: "600x600")
+//            } else {
+//                vImageUrl = label
+//            }
+//        }
+//        
+//        //Video artist
+//        if let imArtist = data["im:artist"] as? JSONDictionary,
+//            label = imArtist["label"] as? String {
+//                vArtist = label
+//        }
+//        
+//        //Video url
+//        if let link = data["link"] as? JSONArray,
+//            vUrl = link[1] as? JSONDictionary,
+//            attributes = vUrl["attributes"] as? JSONDictionary,
+//            href = attributes["href"] as? String {
+//                vVideoUrl = href
+//        }
+//        
+//        //Artist id
+//        if let id = data["id"] as? JSONDictionary,
+//            attributes = id["attributes"] as? JSONDictionary,
+//            imId = attributes["im:id"] as? String {
+//                vImid = imId
+//        }
+//        
+//        //Video genre
+//        if let category = data["category"] as? JSONDictionary,
+//            attributes = category["attributes"] as? JSONDictionary,
+//            term = attributes["term"] as? String {
+//                vGenre = term
+//        }
+//        
+//        //Video link to iTunes
+//        if let id = data["id"] as? JSONDictionary,
+//            label = id["label"] as? String {
+//                vLinkToiTunes = label
+//        }
+//        
+//        //Video release date
+//        if let imReleaseDate = data["im:releaseDate"] as? JSONDictionary,
+//            attributes = imReleaseDate["attributes"] as? JSONDictionary,
+//            label = attributes["label"] as? String {
+//                vReleaseDte = label
+//        }
+//  }
     
-    var vPrice: String {
-        return _vPrice
-    }
-    
-    var vImageUrl: String {
-        return _vImageUrl
-    }
-    
-    var vArtist: String {
-        return _vArtist
-    }
-    
-    var vVideoUrl: String {
-        return _vVideoUrl
-    }
-    
-    var vImid: String {
-        return _vImid
-    }
-    
-    var vGenre: String {
-        return _vGenre
-    }
-    
-    var vLinkToiTunes: String {
-        return _vLinkToiTunes
-    }
-    
-    var vReleaseDte: String {
-        return _vReleaseDte
-    }
-    
-    init(data: JSONDictionary, quality:Bool) {
-        
-        //If we do not initialize all properties we will get error message
-        //Return from initializer without initializing all stored properties
-        
-        //Video name
-        if let name = data["im:name"] as? JSONDictionary,
-            vName = name["label"] as? String {
-            self._vName = vName
-        } else {
-            //You may not always get data back from the JSON - you may want to display message
-            // element in the JSON unexpected
-            
-            _vName = ""
-        }
-        
-        //Video Studio Name
-        if let rights = data["rights"] as? JSONDictionary,
-            vRights = rights["label"] as? String {
-            self._vRights = vRights
-        } else {
-            _vRights = ""
-        }
-        
-        //Video price
-        if let price = data["im:price"] as? JSONDictionary,
-            vPrice = price["label"] as? String {
-            self._vPrice = vPrice
-        } else {
-            _vPrice = ""
-        }
-        
-        //Video image
-        if let img = data["im:image"] as? JSONArray,
-            image = img[2] as? JSONDictionary,
-            immage = image["label"] as? String {
-            if quality {
-                self._vImageUrl = immage.stringByReplacingOccurrencesOfString("100x100", withString: "600x600")
-            } else {
-                self._vImageUrl = immage
-            }
-        } else {
-            _vImageUrl = ""
-        }
-        
-        //Video artist
-        if let artist = data["im:artist"] as? JSONDictionary,
-            vArtist = artist["label"] as? String {
-            self._vArtist = vArtist
-        } else {
-            _vArtist = ""
-        }
-        
-        //Video url
-        if let video = data["link"] as? JSONArray,
-            vUrl = video[1] as? JSONDictionary,
-            vHref = vUrl["attributes"] as? JSONDictionary,
-            vVideoUrl = vHref["href"] as? String {
-            self._vVideoUrl = vVideoUrl
-        } else {
-            _vVideoUrl = ""
-        }
-        
-        //Artist id
-        if let imid = data["id"] as? JSONDictionary,
-            vid = imid["attributes"] as? JSONDictionary,
-            vImid = vid["im:id"] as? String {
-            self._vImid = vImid
-        } else {
-            _vImid = ""
-        }
-        
-        //Video genre
-        if let genre = data["category"] as? JSONDictionary,
-            vGenre = genre["attributes"] as? JSONDictionary,
-            vTerm = vGenre["term"] as? String {
-            self._vGenre = vTerm
-        } else {
-            _vGenre = ""
-        }
-        
-        //Video link to iTunes
-        if let link = data["id"] as? JSONDictionary,
-            vLink = link["label"] as? String {
-            self._vLinkToiTunes = vLink
-        } else {
-            _vLinkToiTunes = ""
-        }
-        
-        //Video release date
-        if let date = data["im:releaseDate"] as? JSONDictionary,
-            vAttributes = date["attributes"] as? JSONDictionary,
-            vDate = vAttributes["label"] as? String {
-            self._vReleaseDte = vDate
-        } else {
-            _vReleaseDte = ""
-        }
-    }
 }

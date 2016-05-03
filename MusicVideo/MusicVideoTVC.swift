@@ -10,9 +10,9 @@ import UIKit
 
 class MusicVideoTVC: UITableViewController {
     
-    var videos = [Videos]()
+    var videos = [Video]()
     
-    var filteredSearch = [Videos]()
+    var filteredSearch = [Video]()
     
     // nil because we want to show the results on the same view
     let resultSearchController = UISearchController(searchResultsController: nil)
@@ -47,7 +47,7 @@ class MusicVideoTVC: UITableViewController {
     }
     
     //API callback
-    func didLoadData(videos: [Videos]) {
+    func didLoadData(videos: [Video]) {
         
         print(reachabilityStatus)
         
@@ -160,7 +160,7 @@ class MusicVideoTVC: UITableViewController {
     }
     
     func filterSearch(searchText: String) {
-        filteredSearch = videos.filter {$0._vArtist.lowercaseString.containsString(searchText) || $0._vName.lowercaseString.containsString(searchText) || $0.vRank == Int(searchText)}
+        filteredSearch = videos.filter {$0.vArtist.lowercaseString.containsString(searchText) || $0.vName.lowercaseString.containsString(searchText) || $0.vRank == Int(searchText)}
         
         //Another way
 //        filteredSearch = videos.filter { videos in
@@ -249,7 +249,7 @@ class MusicVideoTVC: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == storyboard.segueToDetailIdentifier {
             if let indexpath = tableView.indexPathForSelectedRow {
-                let video: Videos
+                let video: Video
                 if resultSearchController.active {
                     video = filteredSearch[indexpath.row]
                 } else {

@@ -40,6 +40,8 @@ class RatingControl: UIView {
     }
     
     override func layoutSubviews() {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        
         // Set the button's width and height to a square the size of the frame's height.
         let buttonSize = Int(frame.size.height)
         var buttonFrame = CGRect(x: 0, y: 0, width: buttonSize, height: buttonSize)

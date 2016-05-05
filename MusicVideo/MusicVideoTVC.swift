@@ -199,11 +199,7 @@ class MusicVideoTVC: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(storyboard.cellReuseIdentifier, forIndexPath: indexPath) as! MusicVideoTableViewCell
         
-        if resultSearchController.active {
-            cell.video = filteredSearch[indexPath.row]
-        } else {
-            cell.video = videos[indexPath.row]
-        }
+        cell.video = resultSearchController.active ? filteredSearch[indexPath.row] : videos[indexPath.row]
         
         return cell
     }
@@ -248,14 +244,9 @@ class MusicVideoTVC: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == storyboard.segueToDetailIdentifier {
-            if let indexpath = tableView.indexPathForSelectedRow {
+            if let indexPath = tableView.indexPathForSelectedRow {
                 let video: Video
-                if resultSearchController.active {
-                    video = filteredSearch[indexpath.row]
-                } else {
-                    video = videos[indexpath.row]
-                }
-                
+                video = resultSearchController.active ? filteredSearch[indexPath.row] : videos[indexPath.row]
                 let dvc = segue.destinationViewController as! MusicVideoDetailVC
                 dvc.video = video
             }

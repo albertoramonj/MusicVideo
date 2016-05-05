@@ -9,9 +9,14 @@
 import Foundation
 
 class APIManager {
+    
+    private(set) var withHighQuality:Bool?
+    
         //() equals to Void
 //    func loadData(urlString:String, completion: (result:String) -> ()) {
     func loadData(urlString:String, withHighQuality:Bool, completion: [Video] -> Void) {
+        
+        self.withHighQuality = withHighQuality
         
         //Disable chache
         let config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
@@ -29,46 +34,30 @@ class APIManager {
                 print(error!.localizedDescription)
             } else {
                 
-                //Added for JSONSerialization
-                //print(data)
+                let videos = self.parseJson(data)
                 
-                do {
-                    /* .AllowFragments - top level object is not Array or Dictionary.
-                     Any type of string or value
-                     NSJSONSerialization requires the Do / Try / Catch
-                     Converts the NSData into a JSON object and cast it to a Dictionary */
-                
-                    if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
-                    as? JSONDictionary,
-                        feed = json["feed"] as? JSONDictionary,
-                        entries = feed["entry"] as? JSONArray {
-                        
-                        // Be careful not to put a lot of logic here in the APIManager
-                        var videos = [Video]()
-                        for (index, entry) in entries.enumerate() {
-                            let entry = Video(data: entry as! JSONDictionary, quality:withHighQuality) // Custom initializer
-                            entry.vRank = index + 1
-                            videos.append(entry)
-                        }
-                        
-                        let i = videos.count
-                        print("iTunesApiManager - total count --> \(i)")
-                        print(" ")
-                        
-                        let priority = DISPATCH_QUEUE_PRIORITY_HIGH
-                        dispatch_async(dispatch_get_global_queue(priority, 0)) {
-                            dispatch_async(dispatch_get_main_queue()) {
-                                completion(videos)
-                            }
-                        }
+                let priority = DISPATCH_QUEUE_PRIORITY_HIGH
+                dispatch_async(dispatch_get_global_queue(priority, 0)) {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        completion(videos)
                     }
-                        
-                } catch {
-                    print("error in JSONSerialization")
                 }
-            
             }
+            
         }
+        
         task.resume()
+    }
+    
+    func parseJson(data: NSData?) -> [Video] {
+        do {
+            if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as AnyObject? {
+                // Because this is a static func we do not have to instantiate the object
+                return JsonDataExtractor.extractVideoDataFromJson(json, quality:withHighQuality!)
+            }
+        } catch {
+            print("Failed to parse data: \(error)")
+        }
+        return [Video]()
     }
 }

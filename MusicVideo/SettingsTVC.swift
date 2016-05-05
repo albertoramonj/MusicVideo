@@ -73,7 +73,6 @@ class SettingsTVC: UITableViewController, MFMailComposeViewControllerDelegate {
         touchID.enabled = isThePhoneTouchIdCapable()
         bestImage.on = NSUserDefaults.standardUserDefaults().boolForKey("bestImageSetting")
         
-        
         //Always check if it's not nil
         if let theValue = NSUserDefaults.standardUserDefaults().objectForKey("APICount") as? Int {
             APICount.text = "\(theValue)"

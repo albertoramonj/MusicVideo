@@ -43,6 +43,12 @@ class MusicVideoTVC: UITableViewController {
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "preferredFontChanged", name: UIContentSizeCategoryDidChangeNotification, object: nil)
         #endif
         
+        if( traitCollection.forceTouchCapability == .Available){
+            registerForPreviewingWithDelegate(self, sourceView: view)
+        } else {
+            print("Force Touch Unavailable")
+        }
+        
         reachabilityStatusChanged()
     }
     
@@ -256,6 +262,8 @@ class MusicVideoTVC: UITableViewController {
             let settingsTVC = segue.destinationViewController as! SettingsTVC
             settingsTVC.delegate = self
         }
+        
+        
     }
     
 
